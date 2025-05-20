@@ -1,0 +1,15 @@
+
+{
+  "name": "invoice-alert-watchdog-electron",
+  "version": "1.0.0",
+  "description": "Invoice Alert Watchdog - Electron App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^28.1.0"
+  }
+}

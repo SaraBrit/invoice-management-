@@ -1,73 +1,43 @@
-# Welcome to your Lovable project
 
-## Project info
+# Invoice Alert Watchdog - Electron App
 
-**URL**: https://lovable.dev/projects/2c263a6f-fabe-4371-8885-da747ca74bf7
+An invoice tracking application with payment alerts, reports, and financial summaries.
 
-## How can I edit this code?
+## Running in Electron Fiddle
 
-There are several ways of editing your application.
+To run this application in Electron Fiddle, follow these steps:
 
-**Use Lovable**
+1. **Open Electron Fiddle**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2c263a6f-fabe-4371-8885-da747ca74bf7) and start prompting.
+2. **Load the Electron Files:**
+   - Open the 'electron' folder in this project
+   - Copy the contents of `main.js` into the Fiddle's main process panel
+   - Copy the contents of `preload.js` into the Fiddle's preload process panel
 
-Changes made via Lovable will be committed automatically to this repo.
+3. **Configure HTML:**
+   - In the Fiddle's renderer process panel, use a script tag to load your application:
+   ```html
+   <!DOCTYPE html>
+   <html>
+     <head>
+       <meta charset="UTF-8">
+       <title>Invoice Alert Watchdog</title>
+       <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+     </head>
+     <body>
+       <div id="root"></div>
+       <script src="./build/main.js"></script>
+     </body>
+   </html>
+   ```
 
-**Use your preferred IDE**
+4. **Build Your React App:**
+   - Run `npm run build` in your React project directory
+   - Copy the build folder to the Electron project directory
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+5. **Run the Application:**
+   - Click "Run" in Electron Fiddle to launch the application
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Development
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/2c263a6f-fabe-4371-8885-da747ca74bf7) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This application combines React for the frontend UI with Electron for the desktop application wrapper.
