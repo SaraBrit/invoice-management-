@@ -6,6 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useToast } from '@/hooks/use-toast';
 
 const Settings = () => {
@@ -17,45 +24,45 @@ const Settings = () => {
   
   const handleSaveAlerts = () => {
     toast({
-      title: "Settings saved",
-      description: "Your alert settings have been updated.",
+      title: "Paramètres sauvegardés",
+      description: "Vos paramètres d'alertes ont été mis à jour.",
     });
   };
   
   const handleSaveExport = () => {
     toast({
-      title: "Settings saved",
-      description: "Your export settings have been updated.",
+      title: "Paramètres sauvegardés",
+      description: "Vos paramètres d'exportation ont été mis à jour.",
     });
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Settings</h1>
-        <p className="text-muted-foreground">Configure your application preferences</p>
+        <h1 className="text-3xl font-bold">Paramètres</h1>
+        <p className="text-muted-foreground">Configurez vos préférences d'application</p>
       </div>
       
       <Tabs defaultValue="alerts" className="w-full">
         <TabsList className="grid grid-cols-3 mb-4 w-full md:w-[400px]">
-          <TabsTrigger value="alerts">Alert Settings</TabsTrigger>
-          <TabsTrigger value="export">Export Options</TabsTrigger>
-          <TabsTrigger value="profile">Profile</TabsTrigger>
+          <TabsTrigger value="alerts">Paramètres d'alertes</TabsTrigger>
+          <TabsTrigger value="export">Options d'exportation</TabsTrigger>
+          <TabsTrigger value="profile">Profil</TabsTrigger>
         </TabsList>
         
         <TabsContent value="alerts">
           <Card>
             <CardHeader>
-              <CardTitle>Alert Notifications</CardTitle>
-              <CardDescription>Configure when and how you'd like to receive alerts</CardDescription>
+              <CardTitle>Notifications d'alertes</CardTitle>
+              <CardDescription>Configurez quand et comment vous souhaitez recevoir des alertes</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label className="text-base">Overdue Invoice Alerts</Label>
+                    <Label className="text-base">Alertes de factures en retard</Label>
                     <p className="text-sm text-muted-foreground">
-                      Receive alerts when invoices are past their due date
+                      Recevez des alertes lorsque les factures ont dépassé leur date d'échéance
                     </p>
                   </div>
                   <Switch 
@@ -66,9 +73,9 @@ const Settings = () => {
                 
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label className="text-base">Approaching Due Date Alerts</Label>
+                    <Label className="text-base">Alertes d'échéance approchante</Label>
                     <p className="text-sm text-muted-foreground">
-                      Get notified before invoices are due
+                      Soyez notifié avant l'échéance des factures
                     </p>
                   </div>
                   <Switch 
@@ -79,9 +86,9 @@ const Settings = () => {
                 
                 <div className="flex items-center justify-between">
                   <div>
-                    <Label className="text-base">Budget Exceeded Alerts</Label>
+                    <Label className="text-base">Alertes de dépassement de budget</Label>
                     <p className="text-sm text-muted-foreground">
-                      Notify when project expenses exceed the budget
+                      Notification lorsque les dépenses du projet dépassent le budget
                     </p>
                   </div>
                   <Switch 
@@ -93,7 +100,7 @@ const Settings = () => {
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="days-before">Days Before Due Date</Label>
+                  <Label htmlFor="days-before">Jours avant échéance</Label>
                   <Input 
                     id="days-before" 
                     type="number" 
@@ -101,12 +108,12 @@ const Settings = () => {
                     onChange={(e) => setDaysBeforeDue(Number(e.target.value))}
                   />
                   <p className="text-xs text-muted-foreground">
-                    Number of days before due date to send approaching alerts
+                    Nombre de jours avant l'échéance pour envoyer des alertes d'approche
                   </p>
                 </div>
               </div>
               
-              <Button onClick={handleSaveAlerts}>Save Alert Settings</Button>
+              <Button onClick={handleSaveAlerts}>Enregistrer les paramètres d'alertes</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -114,16 +121,16 @@ const Settings = () => {
         <TabsContent value="export">
           <Card>
             <CardHeader>
-              <CardTitle>Export Format</CardTitle>
-              <CardDescription>Configure how reports and invoices are exported</CardDescription>
+              <CardTitle>Format d'exportation</CardTitle>
+              <CardDescription>Configurez comment les rapports et factures sont exportés</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="default-format">Default Export Format</Label>
+                  <Label htmlFor="default-format">Format d'exportation par défaut</Label>
                   <Select defaultValue="pdf">
                     <SelectTrigger id="default-format">
-                      <SelectValue placeholder="Select format" />
+                      <SelectValue placeholder="Sélectionnez un format" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="pdf">PDF</SelectItem>
@@ -134,15 +141,15 @@ const Settings = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="report-template">Report Template</Label>
+                  <Label htmlFor="report-template">Modèle de rapport</Label>
                   <Select defaultValue="detailed">
                     <SelectTrigger id="report-template">
-                      <SelectValue placeholder="Select template" />
+                      <SelectValue placeholder="Sélectionnez un modèle" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="simple">Simple</SelectItem>
-                      <SelectItem value="detailed">Detailed</SelectItem>
-                      <SelectItem value="custom">Custom</SelectItem>
+                      <SelectItem value="detailed">Détaillé</SelectItem>
+                      <SelectItem value="custom">Personnalisé</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -150,10 +157,10 @@ const Settings = () => {
               
               <div className="flex items-center space-x-2">
                 <Switch id="include-charts" defaultChecked />
-                <Label htmlFor="include-charts">Include Charts & Graphs</Label>
+                <Label htmlFor="include-charts">Inclure les graphiques</Label>
               </div>
               
-              <Button onClick={handleSaveExport}>Save Export Settings</Button>
+              <Button onClick={handleSaveExport}>Enregistrer les paramètres d'exportation</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -161,33 +168,33 @@ const Settings = () => {
         <TabsContent value="profile">
           <Card>
             <CardHeader>
-              <CardTitle>User Profile</CardTitle>
-              <CardDescription>Update your account information</CardDescription>
+              <CardTitle>Profil utilisateur</CardTitle>
+              <CardDescription>Mettez à jour vos informations de compte</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input id="name" placeholder="John Doe" defaultValue="John Doe" />
+                  <Label htmlFor="name">Nom</Label>
+                  <Input id="name" placeholder="Jean Dupont" defaultValue="Jean Dupont" />
                 </div>
                 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="john@example.com" defaultValue="john@example.com" />
+                  <Input id="email" type="email" placeholder="jean@exemple.com" defaultValue="jean@exemple.com" />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="company">Company</Label>
+                  <Label htmlFor="company">Entreprise</Label>
                   <Input id="company" placeholder="Acme Inc" defaultValue="DPK Designs" />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="position">Position</Label>
-                  <Input id="position" placeholder="Designer" defaultValue="Project Manager" />
+                  <Label htmlFor="position">Poste</Label>
+                  <Input id="position" placeholder="Designer" defaultValue="Chef de projet" />
                 </div>
               </div>
               
-              <Button>Update Profile</Button>
+              <Button>Mettre à jour le profil</Button>
             </CardContent>
           </Card>
         </TabsContent>

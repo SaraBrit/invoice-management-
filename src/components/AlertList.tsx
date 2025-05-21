@@ -52,7 +52,7 @@ const AlertList = ({ alerts, onMarkAsRead, onViewInvoice }: AlertListProps) => {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-md font-medium">
-          Alerts
+          Alertes
           {unreadAlerts.length > 0 && (
             <Badge className="ml-2 bg-red-500">{unreadAlerts.length}</Badge>
           )}
@@ -82,7 +82,7 @@ const AlertList = ({ alerts, onMarkAsRead, onViewInvoice }: AlertListProps) => {
                             className="h-7 text-xs"
                             onClick={() => onViewInvoice(alert.invoiceId!)}
                           >
-                            View Invoice
+                            Voir la facture
                           </Button>
                         )}
                         {!alert.read && onMarkAsRead && (
@@ -92,7 +92,7 @@ const AlertList = ({ alerts, onMarkAsRead, onViewInvoice }: AlertListProps) => {
                             className="h-7 text-xs"
                             onClick={() => onMarkAsRead(alert.id)}
                           >
-                            Mark as Read
+                            Marquer comme lu
                           </Button>
                         )}
                       </div>
@@ -103,7 +103,7 @@ const AlertList = ({ alerts, onMarkAsRead, onViewInvoice }: AlertListProps) => {
             ))
           ) : (
             <div className="text-center py-10 text-muted-foreground">
-              No alerts at this time
+              Aucune alerte pour le moment
             </div>
           )}
           
@@ -113,7 +113,7 @@ const AlertList = ({ alerts, onMarkAsRead, onViewInvoice }: AlertListProps) => {
               className="w-full text-sm" 
               onClick={() => setExpandedAlerts(!expandedAlerts)}
             >
-              {expandedAlerts ? 'Show Less' : `Show All (${alerts.length})`}
+              {expandedAlerts ? 'Voir moins' : `Voir tout (${alerts.length})`}
             </Button>
           )}
         </div>

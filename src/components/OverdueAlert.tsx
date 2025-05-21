@@ -46,9 +46,9 @@ const OverdueAlert = ({ invoices, onView, onDismiss }: OverdueAlertProps) => {
   };
   
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('fr-FR', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'EUR'
     }).format(amount);
   };
   
@@ -64,18 +64,18 @@ const OverdueAlert = ({ invoices, onView, onDismiss }: OverdueAlertProps) => {
         <AlertDialogHeader>
           <div className="flex items-center gap-2 text-red-600 mb-2">
             <AlertTriangle className="h-5 w-5" />
-            <AlertDialogTitle>Overdue Invoices Alert</AlertDialogTitle>
+            <AlertDialogTitle>Alerte de Factures en Retard</AlertDialogTitle>
           </div>
           <AlertDialogDescription>
             <div className="space-y-4">
               <p>
-                You have <span className="font-bold">{overdueInvoices.length}</span> overdue {overdueInvoices.length === 1 ? 'invoice' : 'invoices'} with 
-                a total value of <span className="font-bold text-red-600">{formatCurrency(totalAmount)}</span>.
+                Vous avez <span className="font-bold">{overdueInvoices.length}</span> {overdueInvoices.length === 1 ? 'facture' : 'factures'} en retard 
+                d'une valeur totale de <span className="font-bold text-red-600">{formatCurrency(totalAmount)}</span>.
               </p>
               
               {overdueInvoices.length > 0 && (
                 <div className="bg-red-50 p-3 rounded border border-red-100">
-                  <div className="text-sm font-medium mb-2">Invoice Details:</div>
+                  <div className="text-sm font-medium mb-2">Détails des factures:</div>
                   {overdueInvoices.slice(0, 3).map(inv => (
                     <div key={inv.id} className="flex justify-between text-sm py-1">
                       <div>
@@ -86,22 +86,22 @@ const OverdueAlert = ({ invoices, onView, onDismiss }: OverdueAlertProps) => {
                   ))}
                   {overdueInvoices.length > 3 && (
                     <div className="text-sm text-center mt-2">
-                      And {overdueInvoices.length - 3} more...
+                      Et {overdueInvoices.length - 3} de plus...
                     </div>
                   )}
                 </div>
               )}
               
               <p>
-                Please take immediate action to address these overdue payments.
+                Veuillez prendre des mesures immédiates pour régler ces paiements en retard.
               </p>
             </div>
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={handleDismiss}>Dismiss</AlertDialogCancel>
+          <AlertDialogCancel onClick={handleDismiss}>Ignorer</AlertDialogCancel>
           <AlertDialogAction onClick={handleView} className="bg-red-600 hover:bg-red-700">
-            View Details
+            Voir les détails
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

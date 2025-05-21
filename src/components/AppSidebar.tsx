@@ -16,17 +16,17 @@ const AppSidebar = () => {
   const location = useLocation();
   
   const menuItems = [
-    { title: 'Dashboard', path: '/', icon: Home },
-    { title: 'Invoices', path: '/invoices', icon: FileText },
-    { title: 'Reports', path: '/reports', icon: Calendar },
-    { title: 'Settings', path: '/settings', icon: Settings }
+    { title: 'Tableau de bord', path: '/', icon: Home },
+    { title: 'Factures', path: '/invoices', icon: FileText },
+    { title: 'Rapports', path: '/reports', icon: Calendar },
+    { title: 'Paramètres', path: '/settings', icon: Settings }
   ];
 
   return (
     <Sidebar>
       <SidebarContent>
         <div className="py-4 px-2">
-          <h1 className="text-xl font-bold text-center">Invoice Alert</h1>
+          <h1 className="text-xl font-bold text-center">Alerte Facture</h1>
         </div>
         
         <SidebarGroup>
@@ -37,7 +37,7 @@ const AppSidebar = () => {
                 const isActive = location.pathname === item.path;
                 return (
                   <SidebarMenuItem key={item.path}>
-                    <SidebarMenuButton asChild active={isActive}>
+                    <SidebarMenuButton asChild isActive={isActive}>
                       <Link to={item.path} className="flex items-center">
                         <item.icon className="mr-2 h-5 w-5" />
                         <span>{item.title}</span>
@@ -54,7 +54,7 @@ const AppSidebar = () => {
           <div className="px-4">
             <div className="flex items-center gap-2 rounded-md border border-red-200 bg-red-50 p-3">
               <Bell className="h-5 w-5 text-red-500" />
-              <div className="text-sm text-red-700">3 overdue invoices</div>
+              <div className="text-sm text-red-700">3 factures en retard</div>
             </div>
           </div>
         </div>

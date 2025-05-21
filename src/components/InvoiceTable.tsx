@@ -46,10 +46,19 @@ const InvoiceTable = ({ invoices, onSelect }: InvoiceTableProps) => {
   };
   
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('fr-FR', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'EUR'
     }).format(amount);
+  };
+  
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'paid': return 'Payée';
+      case 'pending': return 'En attente';
+      case 'overdue': return 'En retard';
+      default: return status.charAt(0).toUpperCase() + status.slice(1);
+    }
   };
   
   return (
@@ -57,7 +66,7 @@ const InvoiceTable = ({ invoices, onSelect }: InvoiceTableProps) => {
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex-1">
           <Input
-            placeholder="Search invoices..."
+            placeholder="Rechercher des factures..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full"
@@ -66,13 +75,13 @@ const InvoiceTable = ({ invoices, onSelect }: InvoiceTableProps) => {
         <div className="w-full sm:w-48">
           <Select value={statusFilter} onValueChange={setStatusFilter}>
             <SelectTrigger>
-              <SelectValue placeholder="Filter by status" />
+              <SelectValue placeholder="Filtrer par statut" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Statuses</SelectItem>
-              <SelectItem value="paid">Paid</SelectItem>
-              <SelectItem value="pending">Pending</SelectItem>
-              <SelectItem value="overdue">Overdue</SelectItem>
+              <SelectItem value="all">Tous les statuts</SelectItem>
+              <SelectItem value="paid">Payée</SelectItem>
+              <SelectItem value="pending">En attente</SelectItem>
+              <SelectItem value="overdue">En retard</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -83,12 +92,12 @@ const InvoiceTable = ({ invoices, onSelect }: InvoiceTableProps) => {
           <TableHeader>
             <TableRow>
               <TableHead className="w-20">ID</TableHead>
-              <TableHead>Subject</TableHead>
+              <TableHead>Objet</TableHead>
               <TableHead>Client</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Invoice Date</TableHead>
-              <TableHead>Due Date</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
+              <TableHead>Statut</TableHead>
+              <TableHead>Date de facturation</TableHead>
+              <TableHead>Date d'échéance</TableHead>
+              <TableHead className="text-right">Montant</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -104,7 +113,7 @@ const InvoiceTable = ({ invoices, onSelect }: InvoiceTableProps) => {
                   <TableCell>{invoice.client}</TableCell>
                   <TableCell>
                     <Badge className={statusColors[invoice.status] || ""} variant="outline">
-                      {invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
+                      {getStatusLabel(invoice.status)}
                     </Badge>
                   </TableCell>
                   <TableCell>{invoice.invoiceDate}</TableCell>
@@ -115,7 +124,7 @@ const InvoiceTable = ({ invoices, onSelect }: InvoiceTableProps) => {
             ) : (
               <TableRow>
                 <TableCell colSpan={7} className="text-center py-10 text-muted-foreground">
-                  No invoices found matching your filters
+                  Aucune facture trouvée correspondant à vos filtres
                 </TableCell>
               </TableRow>
             )}
